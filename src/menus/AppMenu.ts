@@ -100,6 +100,15 @@ export const MENU_SPEC: MenuSpec[] = [
 			{ list: "curves-custom", empty: "(no custom curves)" },
 		],
 	},
+	{
+		id: "help",
+		title: "&Help",
+		entries: [
+			{ id: "help.quickStart", text: "Quick Start Guide", shortcut: "F1" },
+			"-",
+			{ id: "help.reportIssue", text: "Report an Issue…" },
+		],
+	},
 ];
 
 /** Menus that only appear nested inside another menu. */

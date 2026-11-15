@@ -13,6 +13,8 @@ import { relaunch } from "./app/themeLaunch";
 import { resolveDevice } from "./settings/deviceChoice";
 import ThemeManager from "./app/ThemeManager";
 import Commands from "./app/Commands";
+import { LINKS } from "./config";
+import { openUrl } from "./util/openUrl";
 import { serve } from "./service/ipc";
 import { rememberApplied } from "./service/profileOps";
 import CurveManager from "./app/CurveManager";
@@ -129,6 +131,8 @@ export default class App {
 		});
 		this.profiles.onChange(() => this.updateStatus());
 		menu.on("file.quit", () => this.quit());
+		menu.on("help.quickStart", () => this.openLink(LINKS.quickStart, "the quick start guide"));
+		menu.on("help.reportIssue", () => this.openLink(LINKS.reportIssue, "the issue tracker"));
 
 		win.testButton.setEnabled(this.device.available);
 		win.testButton.addEventListener("clicked", () => this.device.setTesting(!this.device.testing));
@@ -227,6 +231,12 @@ export default class App {
 			showError(this.win, "NippleTuner", "Couldn't open that device.", "Check Preferences → Check Permissions…, or pick another device.");
 		}
 		return !!tp;
+	}
+
+	/** Opens a link in the browser, or shows it if no browser could be started. */
+	private async openLink(url: string, what: string): Promise<void> {
+		if (await openUrl(url)) return;
+		await showError(this.win, "NippleTuner", `Couldn't open your web browser.`, `To open ${what}, visit:\n${url}`);
 	}
 
 	/** Builds the tuning for the window's current settings. */

@@ -83,6 +83,7 @@ In **Preferences**:
 - **Theme ▸** (Preferences): Match System, Light or Dark. Applies instantly.
 - **Profiles menu:** switch between saved profiles, rename them, or delete them. **File → Import/Export Profile** shares a profile as a file; a custom curve is included.
 - **Hotkeys and scripts:** see the [command-line reference](cli.md). For example, bind `nippletuner next` to a key to cycle profiles.
+- **Help menu:** **Quick Start Guide** (<kbd>F1</kbd>) opens this guide in your browser, and **Report an Issue…** opens a new issue on GitHub.
 
 ## Troubleshooting
 
