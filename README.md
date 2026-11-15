@@ -34,7 +34,7 @@ Most Linux setups only give a TrackPoint one speed slider and a fixed accelerati
 ## Install
 
 ```sh
-git clone <this repository> NippleTuner
+git clone https://github.com/cadenxbh/NippleTuner/tree/main NippleTuner
 cd NippleTuner
 npm install
 npm run build
