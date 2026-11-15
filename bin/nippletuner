@@ -1,0 +1,15 @@
+#!/bin/sh
+# NippleTuner command-line control. Run `nippletuner help` for commands.
+# Finds Node even from hotkeys/launchers, where PATH may not include nvm.
+DIR="$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)"
+NODE="$(command -v node 2>/dev/null)"
+if [ -z "$NODE" ]; then
+	for n in "$HOME"/.nvm/versions/node/*/bin/node /usr/local/bin/node /usr/bin/node; do
+		[ -x "$n" ] && NODE="$n"
+	done
+fi
+if [ -z "$NODE" ]; then
+	echo "nippletuner: Node.js wasn't found" >&2
+	exit 1
+fi
+exec "$NODE" "$DIR/dist/cli.cjs" "$@"
